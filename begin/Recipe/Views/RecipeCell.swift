@@ -102,5 +102,13 @@ extension RecipeCell {
     case .rating(let value):
         difficultyLabel.accessibilityValue = "\(value)"
       }
+      
+    //changed font to body, font will be adjusted by iOS according to category, to avoid dynamic type issues
+    dishNameLabel.font = .preferredFont(forTextStyle: .body)
+    dishNameLabel.adjustsFontForContentSizeCategory = true
+
+    difficultyLabel.font = .preferredFont(forTextStyle: .body)
+    difficultyLabel.adjustsFontForContentSizeCategory = true
+
   }
 }
