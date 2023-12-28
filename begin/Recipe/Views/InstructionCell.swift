@@ -49,7 +49,20 @@ class InstructionCell: UITableViewCell {
     let attributeString =  NSMutableAttributedString(string: text)
     
     if strikeThrough {
-      attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(text.startIndex..., in: text))
+        // 1 Turns off accessibility for checkmark button so VoiceOver reads it as one unit instead of two different accessibility elements
+        checkmarkButton.isAccessibilityElement = false
+
+        if strikeThrough {
+          // 2 The accessibilityLabel for the description now uses the hard-coded string "Completed" followed by the text
+          descriptionLabel.accessibilityLabel = "Completed: \(text)"
+          attributeString.addAttribute(
+            NSAttributedString.Key.strikethroughStyle,
+            value: 2,
+            range: NSRange(text.startIndex..., in: text))
+        } else {
+          // 3 if a user marks an item as uncompleted, VO announces "Uncompleted" before the label description.
+          descriptionLabel.accessibilityLabel = "Uncompleted: \(text)"
+        }
     }
     
     let buttonImage = strikeThrough ? UIImage(named: "icon-check") : UIImage(named: "icon-empty")
