@@ -46,7 +46,10 @@ class RecipeInstructionsViewController: UITableViewController {
     super.viewDidLoad()
     
     assert(recipe != nil)
-    
+      
+    backButton.accessibilityLabel = "back"
+    backButton.accessibilityTraits = .button
+
     isLikedFood(true)
     instructionViewModel = InstructionViewModel(recipe: recipe, type: .ingredient)
     setupRecipe()
