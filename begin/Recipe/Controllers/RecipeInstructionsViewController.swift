@@ -65,9 +65,13 @@ class RecipeInstructionsViewController: UITableViewController {
   func isLikedFood(_ liked: Bool) {
     if liked {
       likeButton.setTitle("😍", for: .normal)
+      likeButton.accessibilityLabel = "Like"
+      likeButton.accessibilityTraits = .button
       didLikeFood = true
     } else {
       likeButton.setTitle("😖", for: .normal)
+      likeButton.accessibilityLabel = "Dislike"
+      likeButton.accessibilityTraits = .button
       didLikeFood = false
     }
   }
