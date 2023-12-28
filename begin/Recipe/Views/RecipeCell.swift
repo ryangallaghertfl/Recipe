@@ -88,5 +88,19 @@ extension RecipeCell {
     foodImageView.accessibilityTraits = .image
     // 2
     foodImageView.accessibilityLabel = recipe.photoDescription
+      
+    // 1 - isAccessibilityElement makes item visible to accessibility features when true. UILabel is false ny default
+    difficultyLabel.isAccessibilityElement = true
+    // 2
+    difficultyLabel.accessibilityTraits = .none
+    // 3
+    difficultyLabel.accessibilityLabel = "Difficulty Level"
+    // 4
+    switch recipe.difficulty {
+    case .unknown:
+        difficultyLabel.accessibilityValue = "Unknown"
+    case .rating(let value):
+        difficultyLabel.accessibilityValue = "\(value)"
+      }
   }
 }
