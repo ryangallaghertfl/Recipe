@@ -75,3 +75,16 @@ class RecipeCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
   }
 }
+
+// MARK: Accessibility
+    // accessibilityTraits takes a mask of traits that characterize the accessibility element. In this case, .image indicates it is an image.
+// accessibilityLabel describes the element in VoiceOver, it is being set to photoDescription
+
+extension RecipeCell {
+  func applyAccessibility(_ recipe: Recipe) {
+    // 1
+    foodImageView.accessibilityTraits = .image
+    // 2
+    foodImageView.accessibilityLabel = recipe.photoDescription
+  }
+}
